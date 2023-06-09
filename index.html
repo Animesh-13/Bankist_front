@@ -35,9 +35,7 @@
             <a class="nav__link" href="#section--3">Testimonials</a>
           </li>
           <li class="nav__item">
-            <div class="nav__link nav__link--btn btn--show-modal">
-              Open account
-            </div>
+            <div class="nav__link nav__link--btn btn--show-modal">Login</div>
           </li>
         </ul>
       </nav>
@@ -295,7 +293,7 @@
           today!
         </h3>
       </div>
-      <button class="btn btn--show-modal">Open your free account today!</button>
+      <button class="btn btn--show-modal">Login</button>
     </section>
 
     <footer class="footer">
@@ -337,22 +335,34 @@
 
     <div class="modal hidden">
       <button class="btn--close-modal">&times;</button>
-      <h2 class="modal__header">
-        Open your bank account <br />
-        in just <span class="highlight">5 minutes</span>
+      <h2 class="modal__header highlight">
+        <!-- <span class="highlight">Login</span> -->
+        Login
       </h2>
-      <form class="modal__form" method="get">
-        <label>First Name</label>
-        <input type="text" name="firstName" />
-        <label>Last Name</label>
-        <input type="text" name="lastName" />
-        <label>Email Address</label>
-        <input type="email" name="email" />
-        <button class="btn">Next step &rarr;</button>
+      <form class="login modal__form">
+        <label for="user">Username</label>
+        <input
+          id="user"
+          type="text"
+          placeholder="user"
+          class="login__input login__input--user"
+        />
+        <label for="PIN">PIN</label>
+        <!-- In practice, use type="password" -->
+        <input
+          id="PIN"
+          type="text"
+          placeholder="PIN"
+          maxlength="4"
+          class="login__input login__input--pin"
+        />
+        <!-- <button class="login__btn">&rarr;</button> -->
+        <button class="btn login__btn">Submit &rarr;</button>
       </form>
     </div>
     <div class="overlay hidden"></div>
 
     <script src="script.js"></script>
+    <!-- <script src="accountScript.js"></script> -->
   </body>
 </html>

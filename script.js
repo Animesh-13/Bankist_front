@@ -72,16 +72,16 @@ btnScrollTo.addEventListener('click', function (e) {
 // 1. Add event listener to common parent element
 // 2. Determine what element originated the event
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  console.log(e.target);
-  e.preventDefault();
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   console.log(e.target);
+//   e.preventDefault();
 
-  // Matching strategy
-  if (e.target.classList.contains('nav__link')) {
-    const id = e.target.getAttribute('href');
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-  }
-});
+//   // Matching strategy
+//   if (e.target.classList.contains('nav__link')) {
+//     const id = e.target.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   }
+// });
 
 const h1 = document.querySelector('h1');
 console.log(h1);
@@ -338,6 +338,90 @@ dotContainer.addEventListener('click', function (e) {
     activeDot(slide);
   }
 });
+
+/**
+ *
+ *
+ * FOR LOGIN and   GOING  TO NEW PAGE
+ */
+const account1 = {
+  owner: 'Jonas Schmedtmann',
+  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+
+  movementsDates: [
+    '2023-05-12T13:15:33.035Z',
+    '2023-05-10T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2023-05-11T12:01:20.894Z',
+  ],
+  currency: 'EUR',
+  locale: 'pt-PT', // de-DE
+};
+
+const account2 = {
+  owner: 'Jessica Davis',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+
+  movementsDates: [
+    '2023-05-12T13:15:33.035Z',
+    '2023-05-10T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2023-05-26T12:01:20.894Z',
+  ],
+  currency: 'USD',
+  locale: 'en-US',
+};
+
+const accounts = [account1, account2];
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUsernames(accounts);
+
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const btnLogin = document.querySelector('.login__btn');
+btnLogin.addEventListener('click', function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+  console.log(inputLoginUsername.value, inputLoginPin.value);
+  let currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    // labelWelcome.textContent = `Welcome back, ${
+    //   currentAccount.owner.split(' ')[0]
+    // }`;
+    window.location.assign(
+      `/account.html?user=${currentAccount?.username}&pin=${currentAccount?.pin}`
+    );
+  }
+});
+/**
+ *
+ * END OF LOGIN
+ */
 // *
 // **another way of doing**
 /*const handleHover = function (e) {
