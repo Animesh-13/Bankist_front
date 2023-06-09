@@ -192,6 +192,7 @@ const startLogOutTimer = function () {
       clearInterval(timer);
       labelWelcome.textContent = `Log in to get started`;
       containerApp.style.opacity = 0;
+      window.location.assign('/');
     }
     // decrease 1s
     time--;
